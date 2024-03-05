@@ -27,6 +27,7 @@ const resolvers = {
       const pets = await Pet.find()
       return pets
     },
+  },
     Mutation: {
       login: async (parent, args) => {
         const user = await User.findOne({ email: args.email });
@@ -71,7 +72,6 @@ const resolvers = {
 
       },
     }
-  }
-};
+  };
 
 module.exports = resolvers;
