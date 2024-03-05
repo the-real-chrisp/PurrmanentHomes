@@ -12,17 +12,17 @@ const AppNavbar = () => {
   
     return (
       <>
-        <Navbar bg='dark' variant='dark' expand='lg'>
+        <Navbar bg='transparent' expand='lg' sticky="top" >
           <Container fluid>
             <Navbar.Brand as={Link} to='/'>
               Purrmanent Homes
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls='navbar' />
-            <Navbar.Collapse id='navbar' className='d-flex flex-row-reverse'>
-              <Nav className='ml-auto d-flex'>
-                <Nav.Link as={Link} to='/'>
-                  Home
-                </Nav.Link>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className='me-auto'>
+                <Nav.Link as={Link} to='/intake'> I Have Pets </Nav.Link>
+                <Nav.Link as={Link} to='/adoption'> Adopt </Nav.Link>
+                <Nav.Link as={Link} to='/shopping'>Shopping</Nav.Link>
                 {/* if user is logged in show saved books and logout */}
                 {Auth.loggedIn() ? (
                   <>
@@ -34,8 +34,11 @@ const AppNavbar = () => {
                 ) : (
                   <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
                 )}
+                 <Nav.Link as={Link} to='/cart'>Cart</Nav.Link>
               </Nav>
+
             </Navbar.Collapse>
+            
           </Container>
         </Navbar>
         {/* set modal data up */}
