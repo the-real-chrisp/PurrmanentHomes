@@ -54,6 +54,20 @@ const resolvers = {
         return { user, token };
       },
 
+      removeUser: async (parent, args) => {
+        return User.findOneAndDelete({ username: args.username })
+      },
+
+      updateUser: async (parent, args, context) => {
+        if (context.user) {
+          return await User.findByIdAndUpdate(context.user._id, args, {
+            new: true,
+          });
+        }
+  
+        throw AuthenticationError;
+      },
+
       createPet: async (_, { name, pic, species, color, age, gender }) => {
         try {
           const newPet = new Pet({
