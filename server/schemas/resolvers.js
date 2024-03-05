@@ -27,6 +27,7 @@ const resolvers = {
       const pets = await Pet.find()
       return pets
     },
+  },
     Mutation: {
       login: async (parent, args) => {
         const user = await User.findOne({ email: args.email });
@@ -84,8 +85,22 @@ const resolvers = {
         }
 
       },
+      updatePet: async (_, { id, ...args }, context) => {
+        if (context.user) {
+          try {
+            const updatedPet = await Pet.findByIdAndUpdate(id, args, { new: true });
+            return updatedPet;
+          } catch (error) {
+            throw new Error('Failed to update pet');
+          }
+        } else {
+          throw new AuthenticationError('Not authenticated');
+        }
+      },
+      removePet: async (parent, args) => {
+        return Pet.findOneAndDelete({ name: args.name })
+      },
     }
-  }
-};
+  };
 
 module.exports = resolvers;
