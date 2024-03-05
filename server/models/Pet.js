@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
 
 const PetSchema = new Schema(
     {
@@ -27,10 +26,15 @@ const PetSchema = new Schema(
         type: String,
         required: true,
         },
+    },
+    {
+        toJSON: {
+          virtuals: true,
+        },
     }
 );
 
 
-const Pets = model('Pets', PetsSchema);
+const Pet = model('Pet', PetSchema);
 
-module.exports = Pets;
+module.exports = Pet;
