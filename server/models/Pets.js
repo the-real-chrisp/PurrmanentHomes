@@ -27,6 +27,11 @@ const PetSchema = new Schema(
         type: String,
         required: true,
         },
+    },
+    {
+        toJSON: {
+          virtuals: true,
+        },
     }
 );
 
