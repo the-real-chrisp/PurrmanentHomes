@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 try{
-    mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/purrmanent-homes');
+    mongoose.connect('mongodb+srv://Dakota:root1@atlascluster.udubasa.mongodb.net/purrmanent-homes');
 } catch (err) {
     console.log(err)
 }
