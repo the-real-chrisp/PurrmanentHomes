@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Soju",
+        "pic": "../assets/white_kitten.jpg",
+        "species": "Cat",
+        "color": "White",
+        "age": "3 months",
+        "gender": "boy"
+    },
+    {
+        "title": "Bad Cat of the Month",
+        "name": "Zoe",
+        "species": "Cat",
+        "color": "Black",
+        "age": "4 months",
+        "gender": "girl",
+        "pic": "../assets/bad_kitten.jpg"
+      },
+      {
+        "title": "Good Dog of the Month",
+        "name": "Jack",
+        "species": "Dog",
+        "color": "Black",
+        "age": "7 months",
+        "gender": "boy",
+        "pic": "../assets/black_labrador.jpg"
+      },
+      {
+        "title": "Bad Dog of the Month",
+        "name": "Joy",
+        "species": "Dog",
+        "color": "White",
+        "age": "10 months",
+        "gender": "boy",
+        "pic": "../assets/white_pom.jpg"
+      }
+]
