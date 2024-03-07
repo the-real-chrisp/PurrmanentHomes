@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Image, Container, Button, Card, Col, Row, Modal } from 'react-bootstrap';
+import { Image, Container, Button, Col, Row, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function PetInfoModal(props) {
   return (
