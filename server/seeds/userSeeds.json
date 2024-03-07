@@ -1,0 +1,22 @@
+[
+    {
+        "username": "FrostyNinja",
+        "email": "frostyninja87@example.com",
+        "password": "password12345"
+    },
+    {
+        "username": "LunarExplorer",
+        "email": "lunarexplorer22@example.com",
+        "password": "password12345"
+    },
+    {
+        "username": "ElectricDolphin",
+        "email": "electricdolphin99@example.com",
+        "password": "password12345"
+    },
+    {
+        "username": "QuantumPenguin",
+        "email": "quantumpenguin55@example.com",
+        "password": "password12345"
+    }
+]
