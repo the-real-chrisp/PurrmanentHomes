@@ -7,7 +7,6 @@ import './index.css'
 import Home from './pages/Home'
 import Adoption from './pages/Adoption'
 
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -20,7 +19,7 @@ const router = createBrowserRouter([
       }, {
         path: '/adopt',
         element: <Adoption />
-      }
+      }, 
     ]
   }
 ])

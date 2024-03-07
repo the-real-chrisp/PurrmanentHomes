@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
-import SignUpForm from '../SignupForm';
-import LoginForm from '../LoginForm';
-
+import SignUpForm from '../SignUpForm/index.jsx';
+import LoginForm from '../LoginForm/index.jsx';
+import AddPetForm from '../AddPetForm/index.jsx';
 import Auth from '../../utils/auth';
 
 const AppNavbar = () => {
     // set modal display state
     const [showModal, setShowModal] = useState(false);
+    const [showPetModal, setShowPetModal] = useState(false);
   
     return (
       <>
@@ -20,7 +21,7 @@ const AppNavbar = () => {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className='me-auto'>
-                <Nav.Link as={Link} to='/intake'> I Have Pets </Nav.Link>
+                <Nav.Link onClick={() => setShowPetModal(true)}> I Have Pets </Nav.Link>
                 <Nav.Link as={Link} to='/adopt'> Adopt </Nav.Link>
                 <Nav.Link as={Link} to='/shopping'>Shopping</Nav.Link>
                 {/* if user is logged in show saved books and logout */}
@@ -69,6 +70,25 @@ const AppNavbar = () => {
                 <Tab.Pane eventKey='signup'>
                   <SignUpForm handleModalClose={() => setShowModal(false)} />
                 </Tab.Pane>
+              </Tab.Content>
+            </Modal.Body>
+          </Tab.Container>
+        </Modal>
+        <Modal
+          size='lg'
+          show={showPetModal}
+          onHide={() => setShowPetModal(false)}
+          aria-labelledby='addPetModal'>
+          {/* tab container to do either signup or login component */}
+          <Tab.Container defaultActiveKey='AddPet'>
+            <Modal.Header closeButton>
+              <Modal.Title id='addPet-modal'>
+                Register Your Pet
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Tab.Content>
+                <AddPetForm handleModalClose={() => setShowPetModal(false)}/>
               </Tab.Content>
             </Modal.Body>
           </Tab.Container>
