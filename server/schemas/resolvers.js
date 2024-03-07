@@ -68,11 +68,10 @@ const resolvers = {
         throw AuthenticationError;
       },
 
-      createPet: async (_, { name, pic, species, color, age, gender }) => {
+      createPet: async (_, { name, species, color, age, gender }) => {
         try {
           const newPet = new Pet({
             name,
-            pic,
             species,
             color,
             age,
