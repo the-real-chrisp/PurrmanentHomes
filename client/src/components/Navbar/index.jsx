@@ -22,7 +22,7 @@ const AppNavbar = () => {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className='me-auto'>
-                <Nav.Link onClick={() => setShowPetModal(true)}> I Have Pets </Nav.Link>
+                <Nav.Link onClick={() => setShowPetModal(true)}> Register Your Pet For Adoption </Nav.Link>
                 <Nav.Link as={Link} to='/adopt'> Adopt </Nav.Link>
                 <Nav.Link as={Link} to='/shopping'>Shopping</Nav.Link>
                 {/* if user is logged in show saved books and logout */}
