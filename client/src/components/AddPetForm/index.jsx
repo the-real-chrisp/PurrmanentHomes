@@ -98,7 +98,7 @@ const AddPetForm = () => {
         </Form.Group>
 
         <Form.Group className='mb-3'>
-          <Form.Label htmlFor='age'>Age</Form.Label>
+          <Form.Label htmlFor='age'>Age (Months)</Form.Label>
           <Form.Control
             type='text'
             placeholder='Age'
