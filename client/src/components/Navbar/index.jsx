@@ -4,14 +4,21 @@ import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import AddPetForm from '../AddPetForm/index.jsx';
 import SignupForm from '../SignupForm';
 import LoginForm from '../LoginForm';
-
 import Auth from '../../utils/auth';
+import Cart from '../Cart';
+import { useCart } from '../../context/CartContext';
 
 const AppNavbar = () => {
     // set modal display state
     const [showModal, setShowModal] = useState(false);
     const [showPetModal, setShowPetModal] = useState(false);
+    const [showCart, setShowCart] = useState(false);
   
+    const handleCloseCart = () => setShowCart(false);
+    const handleShowCart = () => setShowCart(true);
+    const { getCartItems} = useCart();
+    const itemsInCart = getCartItems();
+    let numberOfPetsIncart = itemsInCart != null ? itemsInCart.length : 0;
     return (
       <>
         <Navbar bg='transparent' expand='lg' sticky="top" >
@@ -36,7 +43,7 @@ const AppNavbar = () => {
                 ) : (
                   <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
                 )}
-                 <Nav.Link as={Link} to='/cart'>Cart</Nav.Link>
+                  <Nav.Link onClick={() => handleShowCart()}>Cart({numberOfPetsIncart})</Nav.Link>
               </Nav>
 
             </Navbar.Collapse>
@@ -94,6 +101,11 @@ const AppNavbar = () => {
             </Modal.Body>
           </Tab.Container>
         </Modal>
+        <Cart
+        show={showCart}
+        placement='end'
+        handleCloseCart={handleCloseCart}
+        />
       </>
     );
   };

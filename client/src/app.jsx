@@ -7,8 +7,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
-
 import Header from './components/Header';
+import { CartProvider } from './context/CartContext';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -34,9 +34,11 @@ const client = new ApolloClient({
 });
 function App() {
   return (
-    <ApolloProvider client = {client}>
-      <Header/>
-      <Outlet />
+    <ApolloProvider client={client}>
+      <CartProvider>
+        <Header />
+        <Outlet />
+      </CartProvider>
     </ApolloProvider>
   );
 }
