@@ -1,6 +1,10 @@
 import { Image, Container, Button, Col, Row, Modal } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useCart } from '../../context/CartContext';
+
 function PetInfoModal(props) {
+
+  const { addPetIntoCart } = useCart();
+
   return (
     <>
       <Modal
@@ -31,7 +35,9 @@ function PetInfoModal(props) {
           <Button variant="secondary" onClick={props.handleCloseModal}>
             Close
           </Button>
-          <Button variant="primary">Adopt</Button>
+          <Button variant="primary" onClick={() => {
+            addPetIntoCart(props.pet)
+          }}>Adopt</Button>
         </Modal.Footer>
       </Modal>
     </>

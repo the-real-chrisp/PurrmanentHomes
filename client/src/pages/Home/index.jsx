@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, Col, Row, Image } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import petInfo from '../../utils/seedPetData';
 import PetInfoModal from '../../components/PetInfoModal';
 
@@ -17,12 +17,12 @@ const Home = () => {
         showModal={showModal}
         handleCloseModal={handleCloseModal}
         pet={pet} />
-      <Row xs={1} md={2} className="g-4">
-        {petInfo.map((x, index) => (
+      <Row xs={1} md={2} lg={2} style={ {width: "100%", margin: "0 auto"} }>
+        {petInfo.slice(0, 4).map((x, index) => (
           <Col key={index}>
-            <Card border="info" width="900px" style={{ height: '500px' }}>
+            <Card border="info" width="900px" style={{ height: '700px' }}>
               <Card.Title>{x.title}</Card.Title>
-              <Card.Img width="300px" style={{ height: '300px' }}variant="top" src={x.pic}  />
+              <Card.Img width="900px" height='500px' style={{ objectFit: "cover" }}variant="top" src={x.pic}  />
               <Card.Body>
                 <h5>{x.name}</h5>
                 <Button variant="primary" onClick={() => {
