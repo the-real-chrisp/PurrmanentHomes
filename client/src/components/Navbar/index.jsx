@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
-import SignUpForm from '../SignUpForm/index.jsx';
-import LoginForm from '../LoginForm/index.jsx';
 import AddPetForm from '../AddPetForm/index.jsx';
+import SignupForm from '../SignupForm';
+import LoginForm from '../LoginForm';
+
 import Auth from '../../utils/auth';
 
 const AppNavbar = () => {
@@ -68,7 +69,7 @@ const AppNavbar = () => {
                   <LoginForm handleModalClose={() => setShowModal(false)} />
                 </Tab.Pane>
                 <Tab.Pane eventKey='signup'>
-                  <SignUpForm handleModalClose={() => setShowModal(false)} />
+                  <SignupForm handleModalClose={() => setShowModal(false)} />
                 </Tab.Pane>
               </Tab.Content>
             </Modal.Body>
