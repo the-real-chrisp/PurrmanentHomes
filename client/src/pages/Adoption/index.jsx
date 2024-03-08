@@ -58,16 +58,16 @@ export default function Adoption() {
     columns,
     data,
     initialState: { showColumnFilters: true },
-    layoutMode: 'grid',
     muiTableBodyRowProps: ({ row }) => ({
       onClick: () => {
         handleShowModal();
         setPet(row.original);
       },
       sx: {
-        cursor: 'pointer', //you might want to change the cursor too when adding an onClick
+        cursor: 'pointer',
       },
     }),
+    enableFullScreenToggle: false,
   });
 
   return (

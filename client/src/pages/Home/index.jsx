@@ -20,9 +20,9 @@ const Home = () => {
       <Row xs={1} md={2} className="g-4">
         {petInfo.map((x, index) => (
           <Col key={index}>
-            <Card border="info" width="1000px" style={{ height: '700px' }}>
+            <Card border="info" width="900px" style={{ height: '500px' }}>
               <Card.Title>{x.title}</Card.Title>
-              <Card.Img width="900px" style={{ height: '500px' }}variant="top" src={x.pic}  />
+              <Card.Img width="300px" style={{ height: '300px' }}variant="top" src={x.pic}  />
               <Card.Body>
                 <h5>{x.name}</h5>
                 <Button variant="primary" onClick={() => {
