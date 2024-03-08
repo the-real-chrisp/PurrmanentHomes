@@ -17,7 +17,7 @@ const Home = () => {
         showModal={showModal}
         handleCloseModal={handleCloseModal}
         pet={pet} />
-      <Row xs={1} md={2} lg={2} style={ {width: "100%", margin: "0 auto"} }>
+      <Row xs={1} md={2} lg={2} className="g-4" style={ {width: "100%", margin: "0 auto"} }>
         {petInfo.slice(0, 4).map((x, index) => (
           <Col key={index}>
             <Card border="info" width="900px" style={{ height: '700px' }}>
