@@ -4,7 +4,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 // import { createUser } from '../utils/API';
 import { useMutation } from '@apollo/client';
 // import { ADD_USER } from '../../utils/mutations.js';
-// import Auth from '../../utils/auth.js';
+import Auth from '../../utils/auth.js';
 
 const AddPetForm = () => {
   // set initial form state
@@ -33,8 +33,8 @@ const AddPetForm = () => {
       
 
       console.log(petFormData);
-    //   const { token, user } = await data.addUser;
-    //   Auth.login(token);
+      const { token, user } = await data.addUser;
+      Auth.login(token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
