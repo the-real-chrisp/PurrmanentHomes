@@ -6,6 +6,7 @@ import App from './app.jsx'
 import './index.css'
 import Home from './pages/Home'
 import Adoption from './pages/Adoption'
+import Shopping from './pages/Shopping'
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
       }, {
         path: '/adopt',
         element: <Adoption />
+      }, {
+        path: '/shopping',
+        element: <Shopping />
       }, 
+      
     ]
   }
 ])
