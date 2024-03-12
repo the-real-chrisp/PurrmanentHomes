@@ -14,8 +14,10 @@ const AddPetForm = () => {
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
+
   //   const [addUser, { error, data }] = useMutation(ADD_USER);
   const [createPet, { error }] = useMutation(ADD_PET);
+  console.log(19, error);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -33,15 +35,16 @@ const AddPetForm = () => {
     }
 
     try {
-      await createPet({ variables: { ...petFormData } });
+      const { data } = await createPet({ variables: { ...petFormData } });
+      // await createPet({ variables: { ...petFormData } });
 
-      console.log(petFormData);
-
-      if (!petFormData) {
+      if (!data) {
         throw new Error('No pet information added!');
       }
 
-      const { token, user } = await data.login;
+      console.log(data);
+
+      const { token, user } = await data.createPet;
       console.log(user);
       Auth.login(token);
 
