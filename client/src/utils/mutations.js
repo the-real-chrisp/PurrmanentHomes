@@ -37,8 +37,8 @@ export const UPDATE_USER = gql`
     }
 `
 export const ADD_PET = gql`
-    mutation createPet($name: String!, $pic: String!, $species: String!, $color: String!, $age: String!, $gender: String!) {
-        createPet(name: $name, pic: $pic, species: $species, color: $color, age: $age, gender: $gender) {
+    mutation createPet($name: String!, $species: String!, $color: String!, $age: String!, $gender: String!) {
+        createPet(name: $name, species: $species, color: $color, age: $age, gender: $gender) {
             _id
         }
     }
