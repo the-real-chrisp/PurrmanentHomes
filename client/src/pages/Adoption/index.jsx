@@ -5,9 +5,12 @@ import {
 } from "material-react-table";
 import petInfo from "../../utils/seedPetData";
 import PetInfoModal from "../../components/PetInfoModal";
+import { useQuery } from "@apollo/client";
+import { GET_PETS } from "../../utils/queries";
+import goodCat from "../../assets/goodCat.jpg";
+import goodDog from "../../assets/goodDog.jpg";
 
-
-const data = petInfo;
+const clientData = petInfo;
 
 const speciesList = [
   "Cat",
@@ -24,6 +27,7 @@ export default function Adoption() {
   const [pet, setPet] = useState({});
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
+  const { loading, data } = useQuery(GET_PETS);
   const columns = useMemo(
     () => [
       {
@@ -54,9 +58,23 @@ export default function Adoption() {
     []
   );
 
+  const transformedData = useMemo(() => {
+    if (data) {
+      return data.getPets.map((pet) => {
+        return {
+          ...pet,
+          title: pet.name,
+          pic: (pet.species === "Cat") ? goodCat: goodDog,
+        };
+      });
+    }
+    return [];
+  }, [data]);
+
   const table = useMaterialReactTable({
     columns,
-    data,
+    data: transformedData,
+    clientData,
     initialState: { showColumnFilters: true },
     layoutMode: 'grid',
     muiTableBodyRowProps: ({ row }) => ({
