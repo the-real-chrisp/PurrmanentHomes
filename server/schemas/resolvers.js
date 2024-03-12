@@ -28,47 +28,48 @@ const resolvers = {
       return pets
     },
   },
-    Mutation: {
-      login: async (parent, args) => {
-        const user = await User.findOne({ email: args.email });
-        if (!user) {
-          throw AuthenticationError;
-        }
-
-        const correctPw = await user.isCorrectPassword(args.password);
-
-        if (!correctPw) {
-          throw AuthenticationError;
-        }
-        const token = signToken(user);
-        return { user, token };
-      },
-
-      addUser: async (parent, args) => {
-        const user = await User.create({ username: args.username, email: args.email, password: args.password });
-        console.log(user);
-        if (!user) {
-          throw AuthenticationError;
-        }
-        const token = signToken(user);
-        return { user, token };
-      },
-
-      removeUser: async (parent, args) => {
-        return User.findOneAndDelete({ username: args.username })
-      },
-
-      updateUser: async (parent, args, context) => {
-        if (context.user) {
-          return await User.findByIdAndUpdate(context.user._id, args, {
-            new: true,
-          });
-        }
-  
+  Mutation: {
+    login: async (parent, args) => {
+      const user = await User.findOne({ email: args.email });
+      if (!user) {
         throw AuthenticationError;
-      },
+      }
 
-      createPet: async (_, { name, species, color, age, gender }) => {
+      const correctPw = await user.isCorrectPassword(args.password);
+
+      if (!correctPw) {
+        throw AuthenticationError;
+      }
+      const token = signToken(user);
+      return { user, token };
+    },
+
+    addUser: async (parent, args) => {
+      const user = await User.create({ username: args.username, email: args.email, password: args.password });
+      console.log(user);
+      if (!user) {
+        throw AuthenticationError;
+      }
+      const token = signToken(user);
+      return { user, token };
+    },
+
+    removeUser: async (parent, args) => {
+      return User.findOneAndDelete({ username: args.username })
+    },
+
+    updateUser: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, args, {
+          new: true,
+        });
+      }
+
+      throw AuthenticationError;
+    },
+
+    createPet: async (_, { name, species, color, age, gender }) => {
+      if (context.user) {
         try {
           const newPet = new Pet({
             name,
@@ -77,29 +78,31 @@ const resolvers = {
             age,
             gender,
           });
-          const savedPet = await newPet.save();
+          const savedPet = await newPet.create();
           return savedPet;
         } catch (error) {
           throw new Error('Failed to create pet');
         }
+      }
 
-      },
-      updatePet: async (_, { id, ...args }, context) => {
-        if (context.user) {
-          try {
-            const updatedPet = await Pet.findByIdAndUpdate(id, args, { new: true });
-            return updatedPet;
-          } catch (error) {
-            throw new Error('Failed to update pet');
-          }
-        } else {
-          throw new AuthenticationError('Not authenticated');
+      throw AuthenticationError;
+    },
+    updatePet: async (_, { id, ...args }, context) => {
+      if (context.user) {
+        try {
+          const updatedPet = await Pet.findByIdAndUpdate(id, args, { new: true });
+          return updatedPet;
+        } catch (error) {
+          throw new Error('Failed to update pet');
         }
-      },
-      removePet: async (parent, args) => {
-        return Pet.findOneAndDelete({ name: args.name })
-      },
-    }
-  };
+      } else {
+        throw new AuthenticationError('Not authenticated');
+      }
+    },
+    removePet: async (parent, args) => {
+      return Pet.findOneAndDelete({ name: args.name })
+    },
+  }
+};
 
 module.exports = resolvers;
