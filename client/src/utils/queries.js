@@ -22,7 +22,7 @@ export const QUERY_USERS = gql`
     }
 `
 
-export const QUERY_PET = gql`
+export const GET_PET = gql`
     query getPet($id: ID!) {
         getPet(id: $id) {
             _id
@@ -35,7 +35,7 @@ export const QUERY_PET = gql`
     }
 `
 
-export const QUERY_PETS = gql`
+export const GET_PETS = gql`
     query getPets {
         getPets {
             _id
