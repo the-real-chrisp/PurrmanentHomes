@@ -19,7 +19,7 @@ const SignupForm = () => {
     setUserFormData({ ...userFormData, [name]: value });
   };
 
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async (event) => {clearInterval
     event.preventDefault();
 
     // check if form has everything (as per react-bootstrap docs)
