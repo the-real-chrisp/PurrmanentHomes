@@ -1,9 +1,17 @@
 import { Image, Container, Button, Col, Row, Modal } from 'react-bootstrap';
 import { useCart } from '../../context/CartContext';
+import { useState } from 'react';
+import AlertDismissibleExample from '../Alert';
 
 function PetInfoModal(props) {
 
   const { addPetIntoCart } = useCart();
+  const [showAlert, setShowAlert] = useState(false);
+  const [addSuccess, setAddSuccess] = useState(false);
+  const [message, setMessage] = useState("");
+  function hideAlert() {
+    setShowAlert(false);
+  }
 
   return (
     <>
@@ -13,7 +21,7 @@ function PetInfoModal(props) {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>{props.pet.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -29,14 +37,30 @@ function PetInfoModal(props) {
                 <h5>Gender: {props.pet.gender}</h5>
               </Col>
             </Row>
+            <Row className='mt-3'>
+              <Col>
+            <AlertDismissibleExample 
+              show={showAlert}
+              success={addSuccess}
+              message={message}
+              hideAlert={hideAlert}
+              />
+              </Col>
+            </Row>
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props.handleCloseModal}>
+          <Button variant="secondary" onClick={() => {
+            props.handleCloseModal();
+            hideAlert();
+          }}>
             Close
           </Button>
           <Button variant="primary" onClick={() => {
-            addPetIntoCart(props.pet)
+            const [success, message] = addPetIntoCart(props.pet);
+            setShowAlert(true);
+            setAddSuccess(success);
+            setMessage(message);
           }}>Adopt</Button>
         </Modal.Footer>
       </Modal>
