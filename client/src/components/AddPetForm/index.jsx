@@ -16,7 +16,7 @@ const AddPetForm = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   //   const [addUser, { error, data }] = useMutation(ADD_USER);
-  const [createPet, { error }] = useMutation(ADD_PET);
+  const [createPet, { error, data }] = useMutation(ADD_PET);
   console.log(19, error);
 
   const handleInputChange = (event) => {
@@ -43,7 +43,6 @@ const AddPetForm = () => {
       }
 
       console.log(data);
-
       const { token, user } = await data.createPet;
       console.log(user);
       Auth.login(token);
