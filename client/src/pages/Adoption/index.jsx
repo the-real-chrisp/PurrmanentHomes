@@ -7,8 +7,8 @@ import petInfo from "../../utils/seedPetData";
 import PetInfoModal from "../../components/PetInfoModal";
 import { useQuery } from "@apollo/client";
 import { GET_PETS } from "../../utils/queries";
-import goodCat from "../assets/imgs/white_kitten.jpg"
-import goodDog from "../assets/imgs/black_labrador.jpg"
+import goodCat from "../../assets/imgs/white_kitten.jpg"
+import goodDog from "../../assets/imgs/black_labrador.jpg"
 
 const clientData = petInfo;
 
