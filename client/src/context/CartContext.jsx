@@ -19,12 +19,19 @@ export function CartProvider({ children }) {
     }
 
     function addPetIntoCart(pet) {
+        if (cartItems.find((element) => element.id === pet.id)) {
+            return [false, `${pet.name} is already in Cart`];
+        }
+        if (cartItems != null && cartItems.length == 2) {
+            return [false, "You can not add more than two pets in the Cart"];
+        }
         setCartItems(currItems => {
             if (currItems != null && currItems.length < 2 && !currItems.find((element) => element.id === pet.id)) {
                 return [...currItems, pet];
             }
             return currItems;
         })
+        return [true, "Added into Cart"];
     }
 
     function getCartItems() {
