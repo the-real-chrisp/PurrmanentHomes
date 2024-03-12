@@ -8,6 +8,7 @@ const PetSchema = new Schema(
         },
         pic: {
         type: String,
+        default: '',
         // required: true,
         },
         species: {
