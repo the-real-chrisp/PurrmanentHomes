@@ -27,8 +27,10 @@ export const QUERY_PET = gql`
         getPet(id: $id) {
             _id
             name
-            type
+            species
+            color
             age
+            gender
         }
     }
 `
@@ -38,8 +40,10 @@ export const QUERY_PETS = gql`
         getPets {
             _id
             name
-            type
+            species
+            color
             age
+            gender
         }
     }
 `
