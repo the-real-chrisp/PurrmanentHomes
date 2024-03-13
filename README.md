@@ -24,16 +24,20 @@ Step 6: To build the app, run `npm run build` or `npm run render-build`
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+Navigate to the app homepage:
+![Homepage](./assets/Homepage.png)
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
-
-To utilize the full functionality of the app, you will need to sign up or login into the app
+To utilize the full functionality of the app, you will need to sign up or login into the app:
 ![Log In or Sign Up](./assets/Screenshot%202024-03-11%20202021.png)
+
+Select a pet to adopt a pet:
+![Adopt a pet](./assets/AdoptAPet.png)
+
+Register your pet for adoption:
+![Register your pet for adoption](./assets/RegisterForAdoption.png)
+
+Checkout from your cart:
+![Cart checkout](./assets/Screenshot%202024-03-13%20152628.png)
 
 ## Credits
 
