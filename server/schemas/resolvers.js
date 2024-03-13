@@ -68,18 +68,19 @@ const resolvers = {
       throw AuthenticationError;
     },
 
-    createPet: async (_, { name, species, color, age, gender }) => {
+    createPet: async (_, { name, species, color, age, gender }, context) => {
       if (context.user) {
         try {
-          const newPet = new Pet({
+          const newPet = await Pet.create({
             name,
+            // pic: '',
             species,
             color,
             age,
             gender,
           });
-          const savedPet = await newPet.create();
-          return savedPet;
+
+          return newPet;
         } catch (error) {
           throw new Error('Failed to create pet');
         }

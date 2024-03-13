@@ -3,6 +3,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 
 // import { createUser } from '../utils/API';
 import { useMutation } from '@apollo/client';
+import { ADD_PET } from '../../utils/mutations.js';
 // import { ADD_USER } from '../../utils/mutations.js';
 import Auth from '../../utils/auth.js';
 
@@ -13,7 +14,11 @@ const AddPetForm = () => {
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
-//   const [addUser, { error, data }] = useMutation(ADD_USER);
+
+  //   const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [createPet, { error, data }] = useMutation(ADD_PET);
+  console.log(19, error);
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setPetFormData({ ...petFormData, [name]: value });
@@ -30,23 +35,29 @@ const AddPetForm = () => {
     }
 
     try {
-      
+      const { data } = await createPet({ variables: { ...petFormData } });
+      // await createPet({ variables: { ...petFormData } });
 
-      console.log(petFormData);
-      const { token, user } = await data.addUser;
+      if (!data) {
+        throw new Error('No pet information added!');
+      }
+
+      console.log(data);
+      const { token, user } = await data.createPet;
+      console.log(user);
       Auth.login(token);
+
+      setPetFormData({
+        name: '',
+        species: '',
+        color: '',
+        age: '',
+        gender: ''
+      });
     } catch (err) {
       console.error(err);
       setShowAlert(true);
     }
-
-    setPetFormData({
-      name: '',
-      species: '',
-      color: '',
-      age: '',
-      gender: ''
-    });
   };
 
   return (
@@ -123,7 +134,7 @@ const AddPetForm = () => {
           <Form.Control.Feedback type='invalid'>Gender is required!</Form.Control.Feedback>
         </Form.Group>
 
-    
+
         <Button
           disabled={!(petFormData.name && petFormData.species && petFormData.color && petFormData.gender && petFormData.age)}
           type='submit'
