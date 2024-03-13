@@ -15,6 +15,13 @@ Purrmanent Homes was founded to be a user friendly pet adoption website. Our tea
 
 What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
 
+Step 1: Git clone or fork this repository
+Step 2: Make sure to install Node.js prior to use
+Step 3: To install the necessary node modules, run `npm install`
+Step 4: To start the server, run `npm start`
+Step 5: To run both client and server side, run `npm run develop`
+Step 6: To build the app, run `npm run build` or `npm run render-build` 
+
 ## Usage
 
 Provide instructions and examples for use. Include screenshots as needed.
@@ -24,6 +31,9 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
     ```md
     ![alt text](assets/images/screenshot.png)
     ```
+
+To utilize the full functionality of the app, you will need to sign up or login into the app
+![Log In or Sign Up](./assets/Screenshot%202024-03-11%20202021.png)
 
 ## Credits
 
